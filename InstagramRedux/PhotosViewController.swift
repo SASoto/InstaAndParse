@@ -44,10 +44,9 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!) {
         
-        let chosenImage: UIImage = image
-        /*let temp = editingInfo[UIImagePickerControllerOriginalImage] as UIImage: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage*/
-        
         selectedImage.image = image
+        
+        UserMedia.postUserImage(image, withCaption: "Noice", withCompletion: {(user,error) in return error == nil})
         
         self.dismissViewControllerAnimated(true, completion: {})
     }

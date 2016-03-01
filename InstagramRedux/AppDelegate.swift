@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        Parse.setApplicationId("Instagram", clientKey: "du3dn238fyb38oudn1io23yduod2")
+        
         Parse.initializeWithConfiguration(
             ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "Instagram"
@@ -26,27 +28,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        /*if PFUser.currentUser() != nil {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
-            self.window?.presentViewController(vc, animated: true, completion: nil)
-        }*/
-    NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) ->
+        //Parse.setApplicationId("Instagram", clientKey: "du3dn238fyb38oudn1io23yduod2")
+        
+        // check if user is logged in.
+        if PFUser.currentUser() != nil {
+            
+            let pvc = storyboard.instantiateViewControllerWithIdentifier("TBC") as! UITabBarController
+            
+            window?.rootViewController = pvc
+            
+            print("Current User: \(PFUser.currentUser())")
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) ->
         Void in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mvc = storyboard.instantiateInitialViewController()
+            //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mvc = self.storyboard.instantiateInitialViewController()
             
             self.window?.rootViewController = mvc
         }
         
         return true
     }
-
-    /*func userDidLogout() {
-        
-        var vc = storyboard.instantiateInitialViewController()! as UIViewController
-        
-        window?.rootViewController = vc
-    }*/
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

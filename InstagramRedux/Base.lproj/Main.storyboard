@@ -70,7 +70,7 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.5171139554857026" green="0.42004148199059471" blue="0.73419093586387429" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.69588514397905765" green="0.0" blue="0.035692591561959593" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="rrf-2W-wBK" appends="YES" id="E2f-D2-fqO"/>
@@ -103,7 +103,7 @@
                     <view key="view" contentMode="scaleToFill" id="75r-FJ-xeb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.69588514400000001" green="0.0" blue="0.03569259156" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="hNq-PQ-Ol8"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -135,7 +135,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Y1K-Hb-5QJ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hpg-bL-GKS" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TBC" automaticallyAdjustsScrollViewInsets="NO" id="Hpg-bL-GKS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5rN-Sa-QeN">
                         <autoresizingMask key="autoresizingMask"/>
