@@ -12,6 +12,7 @@ import Parse
 class PhotosViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var selectedImage: UIImageView!
+    @IBOutlet weak var captionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +47,15 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
         
         selectedImage.image = image
         
-        UserMedia.postUserImage(image, withCaption: "Noice", withCompletion: {(user,error) in return error == nil})
-        
         self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    @IBAction func onSubmit(sender: AnyObject) {
+        
+        UserMedia.postUserImage(selectedImage.image, withCaption: self.captionTextField.text, withCompletion: nil)
+        
+        self.tabBarController!.selectedIndex = 0;
+        
     }
     
     func resize(image: UIImage, newSize: CGSize) -> UIImage {
