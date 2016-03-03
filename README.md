@@ -62,4 +62,4 @@ Describe any challenges encountered while building the app.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-<img src='http://imgur.com/aYMbmOI.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
