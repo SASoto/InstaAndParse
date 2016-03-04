@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+//import ParseUI
 
 class InstaPostCellTableViewCell: UITableViewCell {
 
@@ -15,14 +16,17 @@ class InstaPostCellTableViewCell: UITableViewCell {
     @IBOutlet weak var postedCaption: UILabel!
     
     var getPhotoandCaption: PFObject! {
-        
         didSet {
-        self.postedCaption.text = getPhotoandCaption["caption"] as? String
-        let image = getPhotoandCaption["photo"] as! PFObject
-            //self.postedImage = image["image"] as? PFFile
-        }
+            self.postedCaption.text = getPhotoandCaption["caption"] as? String
+            
+        //let image = getPhotoandCaption["media"] as! PFObject
+            //self.postedImage = getPhotoandCaption["image.png"] as? PFFile
+            //postedImage = getPhotoandCaption[] as? PFFile
+        
+            }
+        
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

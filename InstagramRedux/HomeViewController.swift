@@ -19,10 +19,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     super.viewDidLoad()
         
         self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.reloadData()
+        //self.tableView.delegate = self
+        //self.tableView.reloadData()
         
         self.getPosts()
+        self.tableView.reloadData()
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
 
     }
 
@@ -33,14 +36,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func getPosts()
     {
-        var query = PFQuery(className: "Post")
+        var query = PFQuery(className: "UserMedia")
         /*query.getObjectInBackgroundWithId("imkmJsHVIH") {
             (post: PFObject?, error: NSError?) -> Void in*/
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             if error == nil /*&& gameScore != nil*/ {
                 //print(post)
                 self.instaPosts = results
-                //self.instaPosts = [post!]
                 self.tableView.reloadData()
                 
             } else {
@@ -59,11 +61,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("HRC"/*, forIndexPath: indexPath*/) as! InstaPostCellTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("HRC", forIndexPath: indexPath) as! InstaPostCellTableViewCell
         
         cell.getPhotoandCaption = instaPosts[indexPath.row]
         
+        //self.tableView.reloadData()
+        
         return cell
+    }
+    
+    func loadList(notification: NSNotification){
+        //load data here
+        //self.tableView.reloadData()
     }
     
     // MARK: - Navigation

@@ -27,7 +27,7 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
     
     @IBAction func getImage() {
         
-        var imageFromSource = UIImagePickerController()
+        let imageFromSource = UIImagePickerController()
         imageFromSource.delegate = self
         imageFromSource.allowsEditing = true
         
@@ -53,9 +53,9 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
     @IBAction func onSubmit(sender: AnyObject) {
         
         UserMedia.postUserImage(selectedImage.image, withCaption: self.captionTextField.text, withCompletion: nil)
+        //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         
         self.tabBarController!.selectedIndex = 0;
-        
     }
     
     func resize(image: UIImage, newSize: CGSize) -> UIImage {

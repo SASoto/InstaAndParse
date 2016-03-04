@@ -5,6 +5,7 @@
 
 target 'InstagramRedux' do
     pod 'Parse'
+    pod 'ParseUI'
 end
 
 target 'InstagramReduxTests' do
