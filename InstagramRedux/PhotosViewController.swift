@@ -52,9 +52,10 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
         self.dismissViewControllerAnimated(true, completion: {})
     }
     
+    
     @IBAction func onSubmit(sender: AnyObject) {
         
-        NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+       // NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         //If statement does not prevent crash
         if selectedImage.image != nil || captionTextField.text != nil {
             
@@ -67,7 +68,19 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
         
         //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         
-        self.tabBarController!.selectedIndex = 0;
+        let seconds = 3.5
+        let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        
+        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+            
+            self.tabBarController!.selectedIndex = 0;
+            
+        })
+        
+        //self.tabBarController!.selectedIndex = 0;
     }
     
     func resize(image: UIImage, newSize: CGSize) -> UIImage {

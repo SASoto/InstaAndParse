@@ -19,14 +19,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
     super.viewDidLoad()
         
-        //self.getPosts()
-   
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        self.getPosts()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.getPosts()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
 
     }
 
@@ -38,6 +36,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getPosts()
     {
         let query = PFQuery(className: "UserMedia")
+        query.orderByDescending("createdAt")
+        query.includeKey("author")
+        query.limit = 20
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 //print(self.instaPosts)
@@ -51,7 +52,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     }
     
-    
     func loadList(notification: NSNotification){
         self.getPosts()
         self.tableView.reloadData()
@@ -63,7 +63,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 } else {
                     return 0
                 }
-        
         }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
