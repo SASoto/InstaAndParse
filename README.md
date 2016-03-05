@@ -5,7 +5,7 @@ Instagram app that uses a custom backend created with parse.
 
 **InstaParse** is a photo sharing app using Parse as its backend.
 
-Time spent: **15** hours (so far) spent in total
+Time spent: **20** hours (so far) spent in total
 
 ## User Stories
 
@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 - [X] User can log in and log out of his or her account
 - [X] The current signed in user is persisted across app restarts
 - [X] User can take a photo, add a caption, and post it to "Instagram"
-- [ ] User can view the last 20 posts submitted to "Instagram"
+- [X] User can view the last 20 posts submitted to "Instagram"
 
 The following **optional** features are implemented:
 
