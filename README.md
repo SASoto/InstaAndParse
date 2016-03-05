@@ -5,7 +5,7 @@ Instagram app that uses a custom backend created with parse.
 
 **InstaParse** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **15** hours (so far) spent in total
 
 ## User Stories
 
@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [X] User can sign up to create a new account using Parse authentication
 - [X] User can log in and log out of his or her account
 - [X] The current signed in user is persisted across app restarts
-- [ ] User can take a photo, add a caption, and post it to "Instagram"
+- [X] User can take a photo, add a caption, and post it to "Instagram"
 - [ ] User can view the last 20 posts submitted to "Instagram"
 
 The following **optional** features are implemented:
@@ -39,7 +39,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/9LvDbb9.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/aBrd63A.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
