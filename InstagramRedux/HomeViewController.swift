@@ -11,6 +11,7 @@ import Parse
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     var instaPosts: [PFObject]!
@@ -18,14 +19,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
     super.viewDidLoad()
         
+        //self.getPosts()
+   
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        
+        self.tableView.delegate = self
         self.tableView.dataSource = self
-        //self.tableView.delegate = self
-        //self.tableView.reloadData()
         
         self.getPosts()
-        self.tableView.reloadData()
-        
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
 
     }
 
@@ -36,12 +37,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func getPosts()
     {
-        var query = PFQuery(className: "UserMedia")
-        /*query.getObjectInBackgroundWithId("imkmJsHVIH") {
-            (post: PFObject?, error: NSError?) -> Void in*/
+        let query = PFQuery(className: "UserMedia")
         query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
-            if error == nil /*&& gameScore != nil*/ {
-                //print(post)
+            if error == nil {
+                //print(self.instaPosts)
                 self.instaPosts = results
                 self.tableView.reloadData()
                 
@@ -49,15 +48,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error)
             }
         }
-        
-        //self.tableView.reloadData()
+    
+    }
+    
+    
+    func loadList(notification: NSNotification){
+        self.getPosts()
+        self.tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            if instaPosts != nil {
+                return instaPosts!.count
+                } else {
+                    return 0
+                }
         
-        return instaPosts?.count ?? 0
-        
-    }
+        }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -65,14 +72,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.getPhotoandCaption = instaPosts[indexPath.row]
         
-        //self.tableView.reloadData()
-        
         return cell
-    }
-    
-    func loadList(notification: NSNotification){
-        //load data here
-        //self.tableView.reloadData()
     }
     
     // MARK: - Navigation

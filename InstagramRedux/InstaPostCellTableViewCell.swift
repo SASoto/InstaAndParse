@@ -13,20 +13,23 @@ import Parse
 class InstaPostCellTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postedImage: UIImageView!
+    
     @IBOutlet weak var postedCaption: UILabel!
     
     var getPhotoandCaption: PFObject! {
         didSet {
             self.postedCaption.text = getPhotoandCaption["caption"] as? String
             
-        //let image = getPhotoandCaption["media"] as! PFObject
-            //self.postedImage = getPhotoandCaption["image.png"] as? PFFile
-            //postedImage = getPhotoandCaption[] as? PFFile
-        
+            if let userPicture = /*PFUser.currentUser()?*/getPhotoandCaption["media"] as? PFFile {
+                userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                    if (error == nil) {
+                        self.postedImage.image = UIImage(data:imageData!)
+                    }
+                }
             }
-        
+        }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -18,6 +18,8 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +54,17 @@ class PhotosViewController: UIViewController,UINavigationControllerDelegate, UII
     
     @IBAction func onSubmit(sender: AnyObject) {
         
-        UserMedia.postUserImage(selectedImage.image, withCaption: self.captionTextField.text, withCompletion: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+        //If statement does not prevent crash
+        if selectedImage.image != nil || captionTextField.text != nil {
+            
+            UserMedia.postUserImage(selectedImage.image, withCaption: self.captionTextField.text, withCompletion: nil)
+        }
+        
+        else {
+            print("ERROR! No image and/or caption")
+        }
+        
         //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         
         self.tabBarController!.selectedIndex = 0;
